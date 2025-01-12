@@ -20,12 +20,14 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
-    if: ${{github.event.workflow_run.conclusion == 'success'}}    
+    # if: ${{github.event.workflow_run.conclusion == 'success'}}    
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Check Status of the Last Workflow Run
+        run: echo "${{github.event.workflow_run.conclusion == 'success'}}"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Pages
