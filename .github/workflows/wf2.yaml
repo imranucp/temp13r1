@@ -12,5 +12,6 @@ jobs:
       - name: display previous workflow status
         run: echo "${{github.event.workflow_run.conclusion}}"      
       - name: test step 
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        run: echo "The Previous Workflow Run Was Success"
+        # if: ${{ github.event.workflow_run.conclusion == 'success'}}
+        if: ${{always()}}
+        run: echo " Allah Please Help Me"
