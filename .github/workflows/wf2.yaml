@@ -1,0 +1,13 @@
+name: test_workflow
+on:
+  workflow_run: 
+    workflows: 
+      - "lint-ci"
+    types: 
+      - completed
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: display previous workflow status
+        run: echo "${{github.event.workflow_run.conclusion}}"
