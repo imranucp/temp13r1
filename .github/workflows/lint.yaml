@@ -1,0 +1,22 @@
+name: lint-ci
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+jobs:
+  linting-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Install HTMLHint and Stylelint
+        run: |
+          npm install --save-dev htmlhint
+          npm install --save-dev stylelint
+      - name: Lint With HTMLHint
+        run: npx htmlhint "**/*.html"
+      - name: Lint With Stylelint
+        run: npx stylelint "**/*.css"
